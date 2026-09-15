@@ -132,7 +132,9 @@ button {
   margin-bottom: 6px;
 }
 
-.field input {
+.field input,
+.field select,
+.field textarea {
   width: 100%;
   padding: 12px 14px;
   font-size: 15px;
@@ -143,7 +145,14 @@ button {
   font-family: var(--font-body);
 }
 
-.field input:focus {
+.field textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
   outline: 2px solid var(--color-forest);
   outline-offset: 1px;
   border-color: var(--color-forest);
@@ -245,4 +254,52 @@ button {
   color: var(--color-clay);
   font-size: 13px;
   padding: 0;
+}
+
+.child-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--color-line);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.child-card .name {
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0 0 3px;
+}
+
+.child-card .meta {
+  font-size: 13px;
+  color: var(--color-ink-soft);
+  margin: 0;
+}
+
+.btn-secondary {
+  width: 100%;
+  padding: 13px 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-forest-dark);
+  background: transparent;
+  border: 1px solid var(--color-forest);
+  border-radius: 6px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  box-sizing: border-box;
+}
+
+.field-row {
+  display: flex;
+  gap: 12px;
+}
+
+.field-row .field {
+  flex: 1;
 }

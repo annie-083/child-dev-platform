@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabaseClient'
 import { useSession } from '../lib/useSession'
 
@@ -34,10 +34,17 @@ export default function Home() {
       </p>
 
       <div className="next-steps">
+        <p style={{ fontWeight: 600, marginBottom: 10 }}>เริ่มใช้งานได้เลย</p>
+        <ul style={{ paddingLeft: 18, margin: '0 0 14px' }}>
+          <li>
+            <Link to="/profile">โปรไฟล์ผู้ปกครอง</Link>
+          </li>
+          <li>
+            <Link to="/children">โปรไฟล์ลูก</Link>
+          </li>
+        </ul>
         <p style={{ fontWeight: 600, marginBottom: 10 }}>ขั้นตอนถัดไปที่ยังไม่ได้สร้าง</p>
         <ul style={{ paddingLeft: 18, margin: 0 }}>
-          <li>สร้างโปรไฟล์ผู้ปกครอง (Parent Profile)</li>
-          <li>เพิ่มโปรไฟล์ลูก (Child Profile)</li>
           <li>บันทึก Journey ของลูก</li>
           <li>เข้าคอมมูนิตี้</li>
         </ul>
