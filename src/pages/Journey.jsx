@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { supabase } from '../lib/supabaseClient'
 import { useSession } from '../lib/useSession'
+import BottomNav from '../components/BottomNav'
 
 const ENTRY_TYPE_LABELS = {
   OBSERVATION: 'สังเกตการณ์',
@@ -48,7 +49,6 @@ export default function Journey() {
     setLoading(true)
     setError('')
 
-    // RLS จำกัดไว้แล้วว่าเห็นได้เฉพาะลูกของ parent_id = ตัวเอง (Rule 1)
     const { data: childData, error: childError } = await supabase
       .from('children')
       .select('id, nickname')
@@ -99,7 +99,6 @@ export default function Journey() {
 
     let submitError
     if (editingId) {
-      // RLS จำกัดไว้แล้วว่าแก้ได้เฉพาะ entry ที่ parent_id = ตัวเอง
       ;({ error: submitError } = await supabase
         .from('journey_entries')
         .update({ entry_type: entryType, content, occurred_at: occurredAt })
@@ -137,6 +136,7 @@ export default function Journey() {
   if (loading) return null
 
   return (
+    <>
     <div className="home-shell">
       <div className="top-row">
         <div>
@@ -242,5 +242,7 @@ export default function Journey() {
         ))}
       </div>
     </div>
+    <BottomNav />
+    </>
   )
 }
