@@ -42,7 +42,7 @@ export default function Login() {
     setLoading(false)
 
     if (profile?.role === 'ADMIN' || profile?.role === 'SUPER_ADMIN') {
-      navigate('/admin')
+      navigate('/home')
     } else if (profile?.role === 'PROFESSIONAL') {
       navigate('/pro')
     } else {
