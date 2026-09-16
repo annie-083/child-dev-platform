@@ -73,7 +73,9 @@ export default function Home() {
         <div className="top-row">
           <div>
             <p style={{ color: 'var(--color-ink-soft)', fontSize: 13 }}>สวัสดีค่ะ</p>
-            <h1 style={{ fontSize: 20 }}>{displayName || session.user.email}</h1>
+            <Link to="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
+              <h1 style={{ fontSize: 20 }}>{displayName || session.user.email} ✎</h1>
+            </Link>
           </div>
           <button
             type="button"
