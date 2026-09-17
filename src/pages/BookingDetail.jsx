@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { supabase } from '../lib/supabaseClient'
 import { useSession } from '../lib/useSession'
+import { useRole } from '../lib/useRole'
 import RoleAwareBottomNav from '../components/RoleAwareBottomNav'
 
 const BOOKING_STATUS_LABELS = {
@@ -21,6 +22,7 @@ export default function BookingDetail() {
   const { id } = useParams()
   const navigate = useNavigate()
   const session = useSession()
+  const role = useRole()
   const [booking, setBooking] = useState(null)
   const [payment, setPayment] = useState(null)
   const [rating, setRating] = useState(null)
@@ -154,7 +156,7 @@ export default function BookingDetail() {
               className="btn-secondary"
               style={{ display: 'block', textAlign: 'center', marginTop: 12 }}
             >
-              💬 แชทกับผู้เชี่ยวชาญ
+              💬 {role === 'PROFESSIONAL' ? 'แชทกับผู้ปกครอง' : 'แชทกับผู้เชี่ยวชาญ'}
             </Link>
           )}
 
