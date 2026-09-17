@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { supabase } from '../lib/supabaseClient'
 import { useSession } from '../lib/useSession'
+import { useRole } from '../lib/useRole'
 import BottomNav from '../components/BottomNav'
 
 function calculateAge(dateOfBirth) {
@@ -20,6 +21,7 @@ function calculateAge(dateOfBirth) {
 export default function Home() {
   const navigate = useNavigate()
   const session = useSession()
+  const role = useRole()
   const [displayName, setDisplayName] = useState('')
   const [firstChild, setFirstChild] = useState(null)
   const [latestEntry, setLatestEntry] = useState(null)
@@ -31,6 +33,15 @@ export default function Home() {
       return
     }
     if (!session) return
+    if (role === undefined) return // ยังโหลด role ไม่เสร็จ รอก่อน
+    if (role === 'PROFESSIONAL') {
+      navigate('/pro', { replace: true })
+      return
+    }
+    if (role === 'ADMIN' || role === 'SUPER_ADMIN') {
+      navigate('/admin', { replace: true })
+      return
+    }
 
     async function load() {
       const { data: profile } = await supabase
@@ -63,9 +74,10 @@ export default function Home() {
       setLoading(false)
     }
     load()
-  }, [session, navigate])
+  }, [session, role, navigate])
 
-  if (session === undefined || loading) return null
+  if (session === undefined || role === undefined || role === 'PROFESSIONAL' || role === 'ADMIN' || role === 'SUPER_ADMIN' || loading)
+    return null
 
   return (
     <>
