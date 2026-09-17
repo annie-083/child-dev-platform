@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { supabase } from '../lib/supabaseClient'
 import { useSession } from '../lib/useSession'
-import BottomNav from '../components/BottomNav'
+import RoleAwareBottomNav from '../components/RoleAwareBottomNav'
 
 export default function Payment() {
   const { id: bookingId } = useParams()
@@ -139,7 +139,7 @@ export default function Payment() {
         </>
       )}
     </div>
-    <BottomNav />
+    <RoleAwareBottomNav />
     </>
   )
 }

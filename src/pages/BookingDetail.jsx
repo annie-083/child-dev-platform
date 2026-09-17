@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { supabase } from '../lib/supabaseClient'
 import { useSession } from '../lib/useSession'
-import BottomNav from '../components/BottomNav'
+import RoleAwareBottomNav from '../components/RoleAwareBottomNav'
 
 const BOOKING_STATUS_LABELS = {
   PENDING: '🟡 รอชำระเงิน / รอตรวจสอบ',
@@ -198,7 +198,7 @@ export default function BookingDetail() {
         </>
       )}
     </div>
-    <BottomNav />
+    <RoleAwareBottomNav />
     </>
   )
 }
